@@ -1,6 +1,9 @@
 # Vsc
 .vscode
 
+# Tmp dir
+tmp
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
