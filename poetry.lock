@@ -320,4 +320,4 @@ docs = ["furo (==2023.3.27)", "pyenchant (==3.2.2)", "sphinx (==6.1.3)", "sphinx
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "ff96a862c109c8f88ed14136ac944267830843b383dcc24d88344f0dce0f9113"
+content-hash = "3bc08825241d8a10180fcfd13237ed5c68ee2448c3776b8f42f9ef9ece0fae86"

@@ -8,6 +8,8 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.10"
 pyautogui = "^0.9.54"
+pyscreeze = "^0.1.29"
+pillow = "^10.0.1"
 
 
 [build-system]
