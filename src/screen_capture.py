@@ -13,8 +13,8 @@ class ScreenCapture:
         self.canvas.bind("<B1-Motion>", self._on_drag)
         self.canvas.bind("<ButtonRelease-1>", self._on_release)
 
-        self.root.bind("<Escape>", lambda x: self.root.destroy())
-        self.root.bind("<ButtonPress-3>", lambda x: self.root.destroy())
+        self.root.bind("<Escape>", self._exit)
+        self.root.bind("<ButtonPress-3>", self._exit)
 
         self.start_x, self.start_y = None, None
         self.end_x, self.end_y = None, None
@@ -43,15 +43,32 @@ class ScreenCapture:
 
         selected_area = (self.start_x, self.start_y, self.end_x, self.end_y)
 
-        self.capture_screenshot(selected_area)
+        self._capture_area(selected_area)
         self.canvas.delete(self.rect)
+        self._exit()
 
-    def capture_screenshot(self, area):
+    def _exit(self, event=None):
+        self.root.destroy()
+
+    def _capture_area(self, area):
         x1, y1, x2, y2 = area
         if x1 > x2:
             x1, x2 = x2, x1
         if y1 > y2:
             y1, y2 = y2, y1
 
-        print(x1, y1, x2 - x1, y2 - y1)
-        return x1, y1, x2 - x1, y2 - y1
+        self._set_capture_area(
+            x1=x1,
+            y1=y1,
+            x2=x2 - x1,
+            y2=y2 - y1
+        )
+
+    def _set_capture_area(self, x1, y1, x2, y2):
+        self._x1 = x1
+        self._y1 = y1
+        self._x2 = x2
+        self._y2 = y2
+
+    def get_capture_area(self):
+        return self._x1, self._y1, self._x2, self._y2
