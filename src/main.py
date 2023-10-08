@@ -1,7 +1,7 @@
-import pyautogui
 import os
 import shutil
 import tkinter as tk
+import pyautogui
 from screen_capture import ScreenCapture
 
 
