@@ -48,7 +48,7 @@ class ScreenCapture:
         self._canvas.delete(self._rect)
         self._exit()
 
-    def _exit(self):
+    def _exit(self, event=None):
         self._root.destroy()
 
     def _capture_area(self, area):
