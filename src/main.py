@@ -2,6 +2,8 @@ import os
 import shutil
 import tkinter as tk
 import pyautogui
+import pytesseract
+import cv2
 from screen_capture import ScreenCapture
 
 
@@ -17,9 +19,20 @@ def main():
 
     screenshot = pyautogui.screenshot(
         region=screen_capture.get_captured_area())
-    screenshot.save(f"{tmp_path}/screenshot.png")
+    screenshot_file_name = f"{tmp_path}/screenshot.png"
+    screenshot.save(screenshot_file_name)
 
-    shutil.rmtree(tmp_path)
+    pre_processing_img = cv2.imread(screenshot_file_name)
+    grayscale_img = cv2.cvtColor(pre_processing_img, cv2.COLOR_BGR2GRAY)
+
+    # Image Enhancement (Adaptive Histogram Equalization)
+    enhanced_img = cv2.equalizeHist(grayscale_img)
+    cv2.imwrite(f"{tmp_path}/processed_img.png", enhanced_img)
+
+    text = pytesseract.image_to_string(enhanced_img)
+
+    if os.path.exists:
+        shutil.rmtree(tmp_path)
 
 
 if __name__ == "__main__":
