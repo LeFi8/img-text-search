@@ -71,5 +71,5 @@ class ScreenCapture:
         self._x2 = x2
         self._y2 = y2
 
-    def get_capture_area(self):
+    def get_captured_area(self):
         return self._x1, self._y1, self._x2, self._y2

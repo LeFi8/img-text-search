@@ -15,7 +15,8 @@ def main():
     screen_capture = ScreenCapture(root=root)
     root.mainloop()
 
-    screenshot = pyautogui.screenshot(region=screen_capture.get_capture_area())
+    screenshot = pyautogui.screenshot(
+        region=screen_capture.get_captured_area())
     screenshot.save(f"{tmp_path}/screenshot.png")
 
     shutil.rmtree(tmp_path)
