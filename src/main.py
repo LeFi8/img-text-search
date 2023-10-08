@@ -32,6 +32,7 @@ def main():
     cv2.imwrite(f"{tmp_path}/processed_img.png", enhanced_img)
 
     text = pytesseract.image_to_string(enhanced_img)
+    print(text)
 
     if os.path.exists:
         shutil.rmtree(tmp_path)
