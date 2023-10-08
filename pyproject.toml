@@ -12,6 +12,7 @@ pyscreeze = "^0.1.29"
 pillow = "^10.0.1"
 pylint = "^3.0.1"
 pytesseract = "^0.3.10"
+opencv-python = "^4.8.1.78"
 
 
 [build-system]
