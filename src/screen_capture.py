@@ -19,6 +19,7 @@ class ScreenCapture:
         self._start_x, self._start_y = None, None
         self._end_x, self._end_y = None, None
         self._rect = None
+        self._capture_area_set = False
 
     def _on_press(self, event):
         self._start_x = self._canvas.canvasx(event.x)
@@ -48,7 +49,7 @@ class ScreenCapture:
         self._canvas.delete(self._rect)
         self._exit()
 
-    def _exit(self):
+    def _exit(self, event=None):
         self._root.destroy()
 
     def _capture_area(self, area):
@@ -70,6 +71,10 @@ class ScreenCapture:
         self._y1 = y1
         self._x2 = x2
         self._y2 = y2
+        self._capture_area_set = True
+
+    def get_capture_area_set(self):
+        return self._capture_area_set
 
     def get_captured_area(self):
         return self._x1, self._y1, self._x2, self._y2
