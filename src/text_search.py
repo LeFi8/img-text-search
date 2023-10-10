@@ -1,5 +1,3 @@
-import time
-
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
@@ -18,7 +16,8 @@ class TextSearch:
             service=self._service, options=self._options)
 
     def text_search(self, text: str):
-        print(f"Searching for: \n {text}")
+        print("Starting searching process ...")
+        print(f"Searching for: \n\n {text}")
 
         self._driver.get("https://google.com/")
 
