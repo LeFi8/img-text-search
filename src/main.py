@@ -4,12 +4,15 @@ import tkinter as tk
 import pyautogui
 import pytesseract
 import cv2
+import keyboard
 
 from screen_capture import ScreenCapture
 from text_search import TextSearch
 
 
 def main():
+    print("Starting main ...")
+
     root = tk.Tk()
     screen_capture = ScreenCapture(root=root)
     root.mainloop()
@@ -42,4 +45,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    keyboard.add_hotkey('ctrl + alt', callback=main)
+    keyboard.wait('esc')
