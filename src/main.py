@@ -4,10 +4,15 @@ import tkinter as tk
 import pyautogui
 import pytesseract
 import cv2
+import keyboard
+
 from screen_capture import ScreenCapture
+from text_search import TextSearch
 
 
 def main():
+    print("Starting main ...")
+
     root = tk.Tk()
     screen_capture = ScreenCapture(root=root)
     root.mainloop()
@@ -27,16 +32,18 @@ def main():
     pre_processing_img = cv2.imread(screenshot_file_name)
     grayscale_img = cv2.cvtColor(pre_processing_img, cv2.COLOR_BGR2GRAY)
 
-    # Image Enhancement (Adaptive Histogram Equalization)
-    enhanced_img = cv2.equalizeHist(grayscale_img)
-    cv2.imwrite(f"{tmp_path}/processed_img.png", enhanced_img)
+    cv2.imwrite(f"{tmp_path}/processed_img.png", grayscale_img)
+    text = pytesseract.image_to_string(grayscale_img, config='--psm 6')
 
-    text = pytesseract.image_to_string(enhanced_img)
-    print(text)
+    search = TextSearch()
+    search.text_search(text=text)
 
-    if os.path.exists:
-        shutil.rmtree(tmp_path)
+    # remove tmp directory
+    # you can comment this line if
+    # you want to see the images
+    shutil.rmtree(tmp_path)
 
 
 if __name__ == "__main__":
-    main()
+    keyboard.add_hotkey('ctrl + alt', callback=main)
+    keyboard.wait('esc')

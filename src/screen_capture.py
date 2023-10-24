@@ -3,8 +3,11 @@ import tkinter as tk
 
 class ScreenCapture:
     def __init__(self, root):
+        print("Starting screenshot process ...")
+
         self._root = root
         self._root.attributes('-fullscreen', True)
+        self._root.attributes('-topmost', True)
         self._root.attributes('-alpha', 0.1)
 
         self._canvas = tk.Canvas(root, cursor="cross")
@@ -13,7 +16,6 @@ class ScreenCapture:
         self._canvas.bind("<B1-Motion>", self._on_drag)
         self._canvas.bind("<ButtonRelease-1>", self._on_release)
 
-        self._root.bind("<Escape>", self._exit)
         self._root.bind("<ButtonPress-3>", self._exit)
 
         self._start_x, self._start_y = None, None
